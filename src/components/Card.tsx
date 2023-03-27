@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
+import { BsPlus } from "react-icons/bs";
 const Card = () => {
   const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -17,44 +19,87 @@ const Card = () => {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+  };
+
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-gradient-to-br px-2">
-        <div>
-            <p className="text-black border w-24 rounded-t-lg py-1 px-2 bg-white" >New Title</p>
-        <div className="w-full max-w-md  mx-auto bg-white  shadow overflow-hidden">
-          <div className="max-w-md mx-auto">
-            <div className="p-4 sm:p-6">
-              <input placeholder="New Title"  className="block px-2 py-1 outline-none" />
-              <textarea
-                placeholder="New description"
-                className="font-bold border rounded-lg text-gray-700 text-sm px-2 py-2 leading-7 mb-1 outline-none"
-              />
-            
-       
-                <input className="w-96 h-96 bg-pink-300" type="file" onChange={handleImageChange} />
-    
+      <div className="flex gap-8 items-center justify-center min-h-screen from-[#F9F5F3] via-[#F9F5F3] to-[#F9F5F3] bg-gradient-to-br px-2">
+        <form onSubmit={handleSubmit}>
+          <p className="text-black border w-24 rounded-t-lg py-1 px-2 bg-white">
+            New Title
+          </p>
+          <div className="w-80  mx-auto bg-white  shadow overflow-hidden">
+            <div className="max-w-md mx-auto">
+              <div className="p-4 sm:p-6">
+                <input
+                  placeholder="New Title"
+                  className="block  px-2 py-1 outline-none"
+                //   onChange={() => }
+                />
+                <textarea
+                  placeholder="New description"
+                  className="font-bold border w-full rounded-lg text-gray-700 text-sm px-2 py-2 leading-7 mb-1 outline-none"
+                />
 
-              {image && <img className="h-[236px]" src={image} alt="Selected Image" />}
+                {image ? (
+                  <img
+                    className="h-52 object-contain w-full"
+                    src={image}
+                    alt="Selected Image"
+                  />
+                ) : (
+                  <div
+                    className="flex items-center justify-center w-full "
+                    onChange={handleImageChange}
+                  >
+                    <label
+                      htmlFor="dropzone-file"
+                      className="flex flex-col items-center justify-center w-full h-52 border-2 border-dashed border-[#1B2A39] rounded-lg cursor-pointer bg-[#F3A3A5] hover:opacity-80"
+                    >
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                          {" "}
+                          <BsPlus className="text-9xl text-[#1B2A39]" />{" "}
+                        </p>
+                      </div>
+                      <input
+                        id="dropzone-file"
+                        type="file"
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                )}
 
-              
-
+                <button
+                  type="submit"
+                  className="block ml-auto bg-[#E0E0E0] hover:opacity-80 py-1 px-2 mt-2"
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
-        </div> 
-        </div>
-        
-      </div>
+        </form>
 
-      <div className="flex items-center justify-center w-full">
-        <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+        <div className="h-[446px]">
+          <p className="text-black border w-24  rounded-t-lg py-1 px-2 bg-white">
+            New Title
+          </p>
+          <div className="w-80  mx-auto bg-white h-72  shadow overflow-hidden">
+            <div className="max-w-md   mx-auto">
+              <div className="p-4 sm:p-6 ">
+                <p>sadsad</p>
+                <p className="h-24">sadsad</p>
+
+                <div className="flex items-center  h-52 bg-gray-300 justify-center w-full"></div>
+              </div>
+            </div>
           </div>
-          <input id="dropzone-file" type="file" className="hidden" />
-        </label>
+        </div>
       </div>
     </>
   );
