@@ -8,7 +8,6 @@ const Card = () => {
   
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log(file);
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -16,8 +15,9 @@ const Card = () => {
       };
       reader.readAsDataURL(file);
     }
+    console.log(info.image);
   };
-
+  
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +25,7 @@ const Card = () => {
     postData(info);
     // setSecondImage(<img src={info.image} alt="Selected Image" />);
     setInfo({ image: "", title: "", description: "" });
-    getData()
+    getData() 
     getImage()
   };
 
@@ -105,16 +105,16 @@ const Card = () => {
           <div className="w-80  mx-auto bg-white  shadow overflow-hidden">
             <div className="max-w-md mx-auto">
               <div className="p-4 sm:p-6">
-                <h3 className="block  px-2 py-1 h-16 outline-none"></h3>
+                <h3 className="block  px-2 py-1 h-16 outline-none">{data.title}</h3>
                 <p
                   
                   className="font-bold  w-full h-24 rounded-lg text-gray-700 text-sm px-2 py-2 leading-7 mb-1 outline-none"
                 >
-                 
+                 {data.description}
                 </p>
-
                 <div className="flex items-center justify-center w-full ">
-                  <div className="flex flex-col items-center  justify-center w-full h-52 border-2 py-2 border-[#1B2A39] rounded-lg  bg-gray-500 hover:opacity-80"></div>
+                <div className={`flex flex-col items-center justify-center w-full h-52 border-2 py-2 border-[#1B2A39] rounded-lg ${data.image ? `bg-image url(${data.image})` : `bg-gray-500`} hover:opacity-80`}></div>
+
                 </div>
               </div>
             </div>
