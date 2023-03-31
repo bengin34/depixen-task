@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { collection, addDoc,getDocs, setDoc, doc } from "firebase/firestore";
+import { collection,getDocs, setDoc, doc } from "firebase/firestore";
 
 import { database } from "./firebaseConfig";
 
