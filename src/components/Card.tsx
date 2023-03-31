@@ -15,7 +15,6 @@ const Card = () => {
       };
       reader.readAsDataURL(file);
     }
-    console.log(info.imageurl);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -110,7 +109,6 @@ const Card = () => {
                 <div className="flex items-center justify-center w-full ">
                   <div 
                     className={`flex flex-col items-center justify-center w-full h-52 py-2 rounded-lg ${!data.imageurl && "bg-gray-500" }
-                  
                      hover:opacity-80`}
                   > {data?.imageurl && <img src={data.imageurl} className={"object-contain w-full h-full"} />}  </div>
                 </div>
